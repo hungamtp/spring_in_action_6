@@ -1,5 +1,7 @@
-package com.example.chapter5.user;
+package com.example.chapter5.controller;
 
+import com.example.chapter5.user.RegistrationForm;
+import com.example.chapter5.user.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,14 +20,8 @@ public class RegistrationController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping
-    public String registerForm() {
-        return "registration";
-    }
-
     @PostMapping
-    public String processRegistration(RegistrationForm form) {
+    public void processRegistration(RegistrationForm form) {
         userRepo.save(form.toUser(passwordEncoder));
-        return "";
     }
 }
